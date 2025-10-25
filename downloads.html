@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloads</title>
+    <link rel="stylesheet" href="diarystyle.css">
+    <style>
+        .button-container {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+    </style>
+    <script defer>
+        document.addEventListener("DOMContentLoaded", function () {
+            let entries = JSON.parse(localStorage.getItem("diaryEntries")) || [];
+            const entriesContainer = document.getElementById("entriesContainer");
+            
+            if (entries.length === 0) {
+                entriesContainer.innerHTML = "<p>No entries found.</p>";
+                return;
+            }
+
+            entries.forEach((entry, index) => {
+                const entryElement = document.createElement("div");
+                entryElement.classList.add("entry");
+                entryElement.innerHTML = `
+                    <p>${entry}</p>
+                    <div class="button-container">
+                        <button onclick="downloadEntry(${index})">Download</button>
+                        <button onclick="deleteEntry(${index})">Delete</button>
+                    </div>
+                `;
+                entriesContainer.appendChild(entryElement);
+            });
+        });
+
+        function downloadEntry(index) {
+            let entries = JSON.parse(localStorage.getItem("diaryEntries")) || [];
+            if (!entries[index]) return;
+            
+            const entryText = entries[index];
+            const blob = new Blob([entryText], { type: "text/plain" });
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = `diary_entry_${index + 1}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        function deleteEntry(index) {
+            let entries = JSON.parse(localStorage.getItem("diaryEntries")) || [];
+            if (!entries[index]) return;
+            
+            entries.splice(index, 1);
+            localStorage.setItem("diaryEntries", JSON.stringify(entries));
+            location.reload();
+        }
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <button class="home-button" onclick="window.location.href='diary.html'">Diary</button>
+        <h2>Downloads</h2>
+    </div>
+    <div class="content">
+        <h1>Your Saved Entries</h1>
+        <div id="entriesContainer"></div>
+    </div>
+</body>
+</html>

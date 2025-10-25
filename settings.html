@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Settings</title>
+  <link rel="stylesheet" href="diarystyle.css" />
+  <script src="settings.js" defer></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <button class="home-button" onclick="window.location.href='diary.html'">Home</button>
+    <img src="images/logo.png" alt="logo" />
+    <h2 style="margin-right: auto;">Logbook</h2>
+  </div>
+
+  <!-- Settings Content -->
+  <div class="content">
+    <br><br><br>
+    <h1>Settings</h1>
+    <form style="color:white; display: flex; flex-direction: column; gap: 15px; width: 300px;">
+      <label>
+        Change Username:
+        <input type="text" placeholder="Enter new username" style="padding: 8px; border-radius: 5px; border: none;" />
+      </label>
+      <label>
+        Change Email:
+        <input type="email" placeholder="Enter new email" style="padding: 8px; border-radius: 5px; border: none;" />
+      </label>
+      <label>
+        Theme:
+        <select style="padding: 8px; border-radius: 5px;">
+          <option>Dark</option>
+          <option>Light</option>
+        </select>
+      </label>
+      <button type="submit">Save Settings</button>
+    </form>
+  </div>
+</body>
+</html>

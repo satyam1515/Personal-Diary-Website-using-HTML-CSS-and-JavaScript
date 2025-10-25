@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in Form</title>
+    <link rel="stylesheet" href="styles2.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navbar">
+        <button class="home-button" onclick="window.location.href='index.html'">Home</button>
+        <h2 class="journal-title">Logbook</h2>
+      </nav>
+    </header>
+    <main class="wrapper">
+      <h2 class="form-title">Login Page</h2>
+      <form class="form">
+        <div class="input-span">
+          <label for="email" class="label">Email</label>
+          <input type="email" name="email" id="email" class="input-field" required/>
+        </div>
+        <div class="input-span">
+          <label for="password" class="label">Password</label>
+          <input type="password" name="password" id="password" class="input-field" required/>
+        </div>
+        <input class="submit" type="submit" value="Log in" onclick="window.location.href='diary.html'; return false;" />
+        <div class="span">Don't have an account? <a href="register.html" class="Register link">Sign Up</a></div>
+      </form>
+    </main>
+  </body>
+</html>

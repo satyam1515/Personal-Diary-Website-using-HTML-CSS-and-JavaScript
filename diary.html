@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Diary</title>
+    <link rel="stylesheet" href="diarystyle.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar" style="display: flex; justify-content: space-between; align-items: center;">
+        <img src="images/logo.png" alt="logo">
+        <h2 style="margin-right: auto;">Logbook</h2>
+    </div>
+    <aside class="sidebar">
+        <!-- Sidebar header -->
+        <header class="sidebar-header">
+          <a href="#" class="header-logo">
+            <img src="images/logo.png">
+          </a>
+          <button class="toggler sidebar-toggler">
+            <span class="material-symbols-rounded"><img src="images/cheron_left.png"></span>
+          </button>
+          <button class="toggler menu-toggler">
+            <span class="material-symbols-rounded"><img src="images/cheron_down.png"></span>
+          </button>
+        </header>
+        <nav class="sidebar-nav">
+          <!-- Primary top nav -->
+          <ul class="nav-list primary-nav">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link">
+                <span class="material-symbols-rounded"><img src="images/home.png"></span>
+                <span class="nav-label">Home</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="downloads.html" class="nav-link">
+                <span class="material-symbols-rounded"><img src="images/download.png"></span>
+                <span class="nav-label">Downloads</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="settings.html" class="nav-link">
+                <span class="nav-icon material-symbols-rounded"><img src="images/settings.png"></span>
+                <span class="nav-label">Settings</span>
+              </a>
+              <span class="nav-tooltip">Settings</span>
+            </li>
+            <li class="nav-item">
+              <a href="profile.html" class="nav-link">
+                <span class="nav-icon material-symbols-rounded"><img src="images/user.png"></span>
+                <span class="nav-label">Profile</span>
+              </a>
+              <span class="nav-tooltip">Profile</span>
+            </li>
+            <li class="nav-item">
+              <a href="login.html" class="nav-link">
+                <span class="nav-icon material-symbols-rounded"><img src="images/logout.png"></span>
+                <span class="nav-label">Logout</span>
+              </a>
+              <span class="nav-tooltip">Logout</span>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+      
+    <div class="content">
+        <br><br><br><br><b</div>r><br><br>
+        <h1>Welcome to Your Diary!</h1>
+
+        <!-- Display logged-in user's name -->
+        <p>Hi, <span id="username"></span> Here's your personal space to write your thoughts.</p>
+        <br><br>
+        <!-- Font Picker -->
+        <select id="fontSelect" class="font-picker">
+        <p id="fontSelect">Choose Font:</p>
+        <option value="'Roboto', sans-serif" class="roboto">Roboto</option>
+        <option value="'Open Sans', sans-serif" class="opensans">Open Sans</option>
+        <option value="'Lobster', cursive" class="lobster">Lobster</option>
+        <option value="'Pacifico', cursive" class="pacifico">Pacifico</option>
+        <option value="'Oswald', sans-serif" class="oswald">Oswald</option>
+        <option value="'Raleway', sans-serif" class="raleway">Raleway</option>
+        <option value="'Monoton', cursive" class="monoton">Monoton</option>
+        <option value="'Courier Prime', monospace" class="courier">Courier Prime</option>
+        <option value="'Indie Flower', cursive" class="indie">Indie Flower</option>
+        <option value="'Playfair Display', serif" class="playfair">Playfair Display</option>
+        </select>
+        <!-- Diary entry form -->
+        <textarea id="diaryEntry" placeholder="Write your thoughts here..." rows="10" cols="30" style="display: flex; width: 150%; height: 200px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background: transparent; font-size: 14px; resize: none; color: white;"></textarea>
+
+        <br>
+        <ber>
+        <!-- Save entry button -->
+        <button id="saveEntry" style="margin-left: auto;">Save Entry</button>
+        <br>
+        <ul id="entriesList">
+            <!-- Display saved diary entries here -->
+        </ul>
+    </div>
+    
+    <script>
+        document.getElementById("saveEntry").addEventListener("click", function () {
+            const entryText = document.getElementById("diaryEntry").value;
+            if (entryText.trim() === "") return;
+            
+            let entries = JSON.parse(localStorage.getItem("diaryEntries")) || [];
+            entries.push(entryText);
+            localStorage.setItem("diaryEntries", JSON.stringify(entries));
+            
+            document.getElementById("diaryEntry").value = "";
+            alert("Entry saved! Check the Downloads page.");
+
+        });
+    </script>
+</body>
+</html>
